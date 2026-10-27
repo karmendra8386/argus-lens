@@ -1,0 +1,12 @@
+#argus-lens-banner{position:fixed;right:16px;bottom:88px;z-index:2147483647;width:360px;max-width:calc(100vw - 32px);background:#0f172a;color:#e2e8f0;border:1px solid #334155;border-radius:12px;box-shadow:0 12px 32px rgba(0,0,0,.35);font:13px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;padding:12px 14px;display:none}
+#argus-lens-banner.show{display:block}
+#argus-lens-banner[data-level="block"]{border-color:#ef4444}
+#argus-lens-banner[data-level="redact"]{border-color:#f59e0b}
+#argus-lens-banner[data-level="flag"]{border-color:#3b82f6}
+#argus-lens-banner .argus-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+#argus-lens-banner .argus-logo{font-weight:700;color:#fff}
+#argus-lens-banner .argus-close{background:none;border:none;color:#94a3b8;font-size:18px;cursor:pointer}
+#argus-lens-banner .argus-sub{color:#94a3b8;font-size:12px}
+#argus-lens-banner .argus-actions{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+#argus-lens-banner .argus-actions button{background:#1e293b;color:#e2e8f0;border:1px solid #475569;border-radius:8px;padding:6px 10px;cursor:pointer;font-size:12px}
+#argus-lens-banner .argus-actions button:hover{background:#334155}

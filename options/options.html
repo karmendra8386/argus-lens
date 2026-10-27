@@ -1,0 +1,14 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Argus Lens — Options</title>
+<style>body{font:14px/1.6 system-ui,sans-serif;max-width:640px;margin:32px auto;padding:0 16px;color:#0f172a}textarea{width:100%;height:110px;border-radius:8px;border:1px solid #cbd5e1;padding:8px}select{padding:7px;border-radius:8px}button{background:#0f172a;color:#fff;border:none;border-radius:8px;padding:8px 14px;cursor:pointer}.sub{color:#64748b}</style></head>
+<body>
+<h1>◉ Argus Lens — Options</h1>
+<p class="sub">Profiles ported from Argus <code>policy.yaml</code>. Blocklist patterns are regex, one per line — a match is a BLOCKED_TERM.</p>
+<label>Default profile<br>
+<select id="profile"><option value="strict">Strict</option><option value="standard">Standard</option><option value="permissive">Permissive</option></select></label>
+<h3>Custom blocklist</h3>
+<textarea id="blocklist" placeholder="competitor-name&#10;internal-project-\\w+"></textarea>
+<p><button id="save">Save</button> <span id="msg"></span></p>
+<h3>How it works</h3>
+<p>Detectors (PII, secrets, prompt injection) run locally in the page. The policy decides: <strong>block</strong> stops Enter/Send, <strong>redact</strong> offers one-click redaction, <strong>flag</strong> only warns. Audit entries store redacted matches only.</p>
+<script src="options.js"></script>
+</body></html>
