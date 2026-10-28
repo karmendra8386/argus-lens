@@ -11,6 +11,21 @@ Scans your prompt **locally, before you send it** on ChatGPT, Claude, Gemini, an
 
 Policy profiles are ported 1:1 from Argus `policy.yaml`: `strict` / `standard` (default) / `permissive`. Detectors are ported 1:1 from `gateway/security/detectors.py`. Nothing leaves your browser; the audit log stores redacted matches only.
 
+## How to use
+
+**On a chat site (ChatGPT, Claude, Gemini, AI Studio):**
+1. Open a chat and type or paste your prompt as usual — Argus Lens checks it **locally, before anything is sent**. Nothing to click when all is well.
+2. If something is found, a banner appears above the prompt box:
+   - **Secret detected** (API keys, tokens, passwords) — the prompt is **blocked**: Enter and the Send button won't submit it. Remove the secret, or move it somewhere safe, and the banner clears.
+   - **Personal data** (emails, phone numbers, card numbers) — click **Redact** to replace each item with a placeholder in one click, or edit it yourself.
+   - **Prompt injection** (instructions trying to hijack the model) — a **warning flag**; in the **Strict** profile this also blocks sending.
+3. The toolbar icon's **badge count** shows how many findings the current page produced.
+4. Click the icon to see the **audit log**: what was flagged, where and when. Entries are stored **redacted only** — the raw secret or personal data is never written to the log — and stay in your browser.
+
+**Options:** right-click the icon → **Options** to choose a protection profile — **Strict** (blocks injections too), **Standard** (default), or **Permissive** — and to add your own **custom blocklist rules** (regular expressions) for terms that must never leave your browser.
+
+**Good to know:** 100% local — no account, no network calls, your prompts never leave your device.
+
 ## Install (developer mode, 1 minute)
 
 1. Unzip `argus-lens.zip` (or use this folder)
