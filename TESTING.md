@@ -19,3 +19,13 @@
 - Chrome Web Store review.
 
 Run the DOM test: `npm i jsdom` then `node tests/dom-test.js` (paths in the file point at the sibling extension too — it tests both).
+
+## Live install test (Oct 28, 2026, v0.1.1) — PASSED
+
+Real-browser verification in Chromium 152 (headless, --load-extension, puppeteer-core,
+ChatGPT-shaped page served for the chatgpt.com origin): service worker registered,
+zero console/page errors. Typing the canonical example AWS key produced the BLOCK
+banner ("BLOCK — 1 finding: AWS_KEY (AKIA••••)", profile standard); an email address
+produced the REDACT state with the one-click Redact action offered, values masked in
+the banner. Screenshot: ../store-assets/argus-live-install-test.png (real capture).
+Still untested: the live sites' own logged-in DOMs.
