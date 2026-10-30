@@ -4,7 +4,7 @@
 
 1. **Manifest** — valid JSON, Manifest V3, all referenced files present.
 2. **JS syntax** — `node --check` passes on every script.
-3. **Detector logic (Node)** — AWS key → block, instruction-override → flag (standard) / block (strict), SSN + credit card → block; redaction replaces matches with `[REDACTED:TYPE]`.
+3. **Detector logic (Node)** — AWS key → block; instruction-override → flag (standard) / block (strict); redaction replaces matches with `[REDACTED:TYPE]`. NOTE (corrected Oct 29, 2026): in v0.1.0–0.1.1, SSN + credit card were in the PII group and got REDACT, not block — this line was wrong for those versions; the owner caught it in hands-on testing.
 4. **DOM integration (jsdom, `tests/dom-test.js`)** — simulated chat page with a `#prompt-textarea`:
    - Banner is created, shows for a secret/PII prompt, names the categories, and sets `level=block`
    - **Enter is intercepted** (`defaultPrevented`) while a secret is present, and allowed for a clean prompt
@@ -29,3 +29,16 @@ banner ("BLOCK — 1 finding: AWS_KEY (AKIA••••)", profile standard); an
 produced the REDACT state with the one-click Redact action offered, values masked in
 the banner. Screenshot: ../store-assets/argus-live-install-test.png (real capture).
 Still untested: the live sites' own logged-in DOMs.
+
+## v0.1.2 policy change (Oct 29, 2026) — owner-directed
+
+Owner found in hands-on testing that PII was only highlighted (redact offered, send
+never blocked). New policy, implemented in detectors.js decide():
+- SSN + credit card BLOCK in every profile (high-sensitivity PII, treated like secrets).
+- ALL PII blocks in Strict; Standard keeps one-click redact for email/phone/IP;
+  Permissive flags them. Secrets still block everywhere; injection blocks in Strict.
+- Banner sub-line updated to state the policy accurately.
+Tests: tests/logic-test.js — 24/24 policy-matrix assertions PASSED (per profile x
+AWS key / SSN / card / email / phone / injection / blocklist / clean / mixed).
+DOM suite re-run after the change: 14/14 PASSED (Enter intercept now also engages
+for SSN/card prompts via the block path).

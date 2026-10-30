@@ -49,10 +49,14 @@
 
   // Policy profiles — ported from Argus policy.yaml
   const PROFILES = {
-    strict:     { secrets: 'block',  pii: 'redact', prompt_injection: 'block', blocklist: 'block' },
+    strict:     { secrets: 'block',  pii: 'block', prompt_injection: 'block', blocklist: 'block' },
     standard:   { secrets: 'block',  pii: 'redact', prompt_injection: 'flag',  blocklist: 'block' },
     permissive: { secrets: 'block',  pii: 'flag',   prompt_injection: 'flag',  blocklist: 'allow' }
   };
+
+  // High-sensitivity PII blocks in EVERY profile (owner decision, Oct 29, 2026):
+  // an SSN or card number gets the same treatment as a secret, not a redact offer.
+  const HIGH_SENSITIVITY_PII = new Set(['SSN', 'CREDIT_CARD']);
 
   function redactMatch(match) {
     if (!match) return '••••';
@@ -98,6 +102,19 @@
     const reasons = [];
     for (const [detector, findings] of Object.entries(scanResult.groups)) {
       if (!findings.length) continue;
+      if (detector === 'pii') {
+        // Split PII: high-sensitivity categories always block; the rest follow the profile.
+        const high = findings.filter(f => HIGH_SENSITIVITY_PII.has(f.category));
+        const rest = findings.filter(f => !HIGH_SENSITIVITY_PII.has(f.category));
+        if (high.length) reasons.push({ detector, policy: 'block', count: high.length, categories: [...new Set(high.map(f => f.category))] });
+        if (rest.length) reasons.push({ detector, policy: profile.pii || 'flag', count: rest.length, categories: [...new Set(rest.map(f => f.category))] });
+        for (const r of reasons.filter(r => r.detector === 'pii')) {
+          if (r.policy === 'block') action = 'block';
+          else if (r.policy === 'redact' && action !== 'block') action = 'redact';
+          else if (r.policy === 'flag' && action === 'allow') action = 'flag';
+        }
+        continue;
+      }
       const policy = profile[detector] || 'flag';
       reasons.push({ detector, policy, count: findings.length, categories: [...new Set(findings.map(f => f.category))] });
       if (policy === 'block') action = 'block';

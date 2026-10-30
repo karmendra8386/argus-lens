@@ -31,7 +31,7 @@
       "run_at": "document_idle"
     }
   ],
-  "description": "Scan AI prompts for secrets, PII, and prompt injection before you send them — locally, on ChatGPT, Claude, and Gemini.",
+  "description": "Scan AI prompts for secrets, PII, and prompt injection before you send them \u2014 locally, on ChatGPT, Claude, and Gemini.",
   "homepage_url": "https://github.com/karmendra8386/argus",
   "host_permissions": [
     "https://chatgpt.com/*",
@@ -46,12 +46,12 @@
     "48": "icons/icon48.png"
   },
   "manifest_version": 3,
-  "name": "Argus Lens — AI Prompt Guard",
+  "name": "Argus Lens \u2014 AI Prompt Guard",
   "options_page": "options/options.html",
   "permissions": [
     "storage",
     "activeTab"
   ],
   "short_name": "Argus Lens",
-  "version": "0.1.1"
+  "version": "0.1.2"
 }

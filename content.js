@@ -112,7 +112,7 @@
       `<strong>${decision.action.toUpperCase()}</strong> — ${result.count} finding${result.count > 1 ? 's' : ''}: ` +
       result.all.slice(0, 6).map(f => `${f.category} (${redactMatch(f.match)})`).join(', ') +
       (result.count > 6 ? ` +${result.count - 6} more` : '') +
-      `<br><span class="argus-sub">Profile: ${decision.profile} · Secrets block, PII ${banner.dataset.level === 'redact' ? 'redacted' : 'flagged'} in Argus policy. Nothing leaves your browser.</span>`;
+      `<br><span class="argus-sub">Profile: ${decision.profile} · Secrets, SSNs and card numbers always block. Other personal data ${decision.profile === 'strict' ? 'blocks in Strict' : 'can be redacted in one click'}. Nothing leaves your browser.</span>`;
     banner.classList.add('show');
     banner.querySelector('[data-act="redact"]').style.display = decision.action === 'block' ? 'none' : '';
     banner.querySelector('[data-act="send"]').style.display = decision.action === 'flag' || decision.action === 'redact' ? '' : 'none';

@@ -4,9 +4,9 @@
   <p class="sub">Prompt guard for ChatGPT, Claude & Gemini. 100% local — nothing leaves your browser.</p>
   <label>Policy profile
     <select id="profile">
-      <option value="strict">Strict — block secrets + injection, redact PII</option>
-      <option value="standard">Standard — block secrets, redact PII, flag injection</option>
-      <option value="permissive">Permissive — block secrets only, flag rest</option>
+      <option value="strict">Strict — block secrets, injection, and all PII</option>
+      <option value="standard">Standard — block secrets + SSN/cards, redact other PII, flag injection</option>
+      <option value="permissive">Permissive — block secrets + SSN/cards, flag rest</option>
     </select>
   </label>
   <div id="last" class="card">No scans yet on this tab. Type a prompt containing an email or a key to test it.</div>

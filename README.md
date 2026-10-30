@@ -17,7 +17,7 @@ Policy profiles are ported 1:1 from Argus `policy.yaml`: `strict` / `standard` (
 1. Open a chat and type or paste your prompt as usual — Argus Lens checks it **locally, before anything is sent**. Nothing to click when all is well.
 2. If something is found, a banner appears above the prompt box:
    - **Secret detected** (API keys, tokens, passwords) — the prompt is **blocked**: Enter and the Send button won't submit it. Remove the secret, or move it somewhere safe, and the banner clears.
-   - **Personal data** (emails, phone numbers, card numbers) — click **Redact** to replace each item with a placeholder in one click, or edit it yourself.
+   - **Personal data** — **SSNs and credit card numbers are blocked outright**, like secrets, in every profile. Emails, phone numbers and IPs get **Redact** (replace each item with a placeholder in one click) — and in the **Strict** profile, all personal data is blocked outright.
    - **Prompt injection** (instructions trying to hijack the model) — a **warning flag**; in the **Strict** profile this also blocks sending.
 3. The toolbar icon's **badge count** shows how many findings the current page produced.
 4. Click the icon to see the **audit log**: what was flagged, where and when. Entries are stored **redacted only** — the raw secret or personal data is never written to the log — and stay in your browser.
