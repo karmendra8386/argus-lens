@@ -17,6 +17,15 @@ Policy profiles are ported 1:1 from Argus `policy.yaml`: `strict` / `standard` (
 
 *Live capture (Nov 9, 2026) of the unmodified extension in Chromium: an AWS-style key in the prompt → **BLOCK**; an email → **REDACT**, and one click rewrites the prompt to `[REDACTED:EMAIL]`; a prompt-injection string → **FLAG**; a clean prompt → no banner. The chat page is a local stand-in (this environment has no logged-in chat session) — what is real, what is a stand-in, and the machine-checked banner record are documented in [`demo/`](demo/).*
 
+## Works with
+
+- **[Argus](https://github.com/karmendra8386/argus)** — the parent project: Lens's detectors and policy profiles are ported 1:1 from Argus's gateway (`policy.yaml`, `detectors.py`). Argus screens at the gateway; Lens screens in the browser, before the prompt is ever sent.
+- **[Argus-Bench](https://doi.org/10.5281/zenodo.23877366)** — where the gateway detector's limits were measured: the same detector lineage scored 15/204 on the frozen corpus, which is exactly why defence in depth — browser *and* gateway — matters.
+- **[mcplens](https://github.com/karmendra8386/mcplens)** — the third surface of the same stance: Lens guards prompts, Argus guards the gateway, mcplens vets the MCP servers that tools connect through.
+- **[Cost Per Prompt](https://github.com/karmendra8386/cost-per-prompt)** — the sibling extension, cost side: live token and cost estimates inside the same chat sites, powered by [tokenecon](https://github.com/karmendra8386/agentic-ai-token-economics).
+
+**The connected set** — one thread through all of it: what an agent did, what it cost, and whether it should have been allowed. [Argus](https://github.com/karmendra8386/argus) · [tokenecon](https://github.com/karmendra8386/agentic-ai-token-economics) · [mcplens](https://github.com/karmendra8386/mcplens) · [agent-cost-mcp-server](https://github.com/karmendra8386/agent-cost-mcp-server) · [Argus Lens](https://github.com/karmendra8386/argus-lens) · [PersistAIBench](https://github.com/karmendra8386/persistbench-bench) · [Argus-Bench](https://doi.org/10.5281/zenodo.23877366)
+
 ## How to use
 
 **On a chat site (ChatGPT, Claude, Gemini, AI Studio):**
