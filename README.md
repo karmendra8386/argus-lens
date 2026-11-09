@@ -11,6 +11,12 @@ Scans your prompt **locally, before you send it** on ChatGPT, Claude, Gemini, an
 
 Policy profiles are ported 1:1 from Argus `policy.yaml`: `strict` / `standard` (default) / `permissive`. Detectors are ported 1:1 from `gateway/security/detectors.py`. Nothing leaves your browser; the audit log stores redacted matches only.
 
+## Demo
+
+![Argus Lens demo](demo/demo.gif)
+
+*Live capture (Nov 9, 2026) of the unmodified extension in Chromium: an AWS-style key in the prompt → **BLOCK**; an email → **REDACT**, and one click rewrites the prompt to `[REDACTED:EMAIL]`; a prompt-injection string → **FLAG**; a clean prompt → no banner. The chat page is a local stand-in (this environment has no logged-in chat session) — what is real, what is a stand-in, and the machine-checked banner record are documented in [`demo/`](demo/).*
+
 ## How to use
 
 **On a chat site (ChatGPT, Claude, Gemini, AI Studio):**

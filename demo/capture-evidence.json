@@ -1,0 +1,34 @@
+{
+ "beat1_aws_key": {
+  "present": true,
+  "shown": true,
+  "level": "block",
+  "text": "\u25c9 Argus Lens \u00d7 BLOCK \u2014 2 findings: AWS_KEY (AKIA\u2022\u2022\u2022\u2022), EMAIL (test\u2022\u2022\u2022\u2022@example.com) Profile: standard \u00b7 Secrets, SSNs and card numbers always block. Other personal data can be redacted in one click. Nothing leaves your browser. Dismiss"
+ },
+ "after_enter_sent_log": "",
+ "beat2_email": {
+  "present": true,
+  "shown": true,
+  "level": "redact",
+  "text": "\u25c9 Argus Lens \u00d7 REDACT \u2014 1 finding: EMAIL (john\u2022\u2022\u2022\u2022@example.com) Profile: standard \u00b7 Secrets, SSNs and card numbers always block. Other personal data can be redacted in one click. Nothing leaves your browser. Redact & keep editing Send anyway Dismiss"
+ },
+ "beat2_after_redact_text": "Please email the report to [REDACTED:EMAIL] today",
+ "beat2_after_redact_banner": {
+  "present": true,
+  "shown": false,
+  "level": "redact",
+  "text": "\u25c9 Argus Lens\u00d7 REDACT \u2014 1 finding: EMAIL (john\u2022\u2022\u2022\u2022@example.com)Profile: standard \u00b7 Secrets, SSNs and card numbers always block. Other personal data can be redacted in one click. Nothing leaves your browser. Redact & keep editing Send anyway Dismiss"
+ },
+ "beat2b_injection": {
+  "present": true,
+  "shown": true,
+  "level": "flag",
+  "text": "\u25c9 Argus Lens \u00d7 FLAG \u2014 2 findings: INSTRUCTION_OVERRIDE (Igno\u2022\u2022\u2022\u2022), SYSTEM_PROMPT_PROBE (reve\u2022\u2022\u2022\u2022) Profile: standard \u00b7 Secrets, SSNs and card numbers always block. Other personal data can be redacted in one click. Nothing leaves your browser. Redact & keep editing Send anyway Dismiss"
+ },
+ "beat3_clean": {
+  "present": true,
+  "shown": false,
+  "level": "flag",
+  "text": "\u25c9 Argus Lens\u00d7 FLAG \u2014 2 findings: INSTRUCTION_OVERRIDE (Igno\u2022\u2022\u2022\u2022), SYSTEM_PROMPT_PROBE (reve\u2022\u2022\u2022\u2022)Profile: standard \u00b7 Secrets, SSNs and card numbers always block. Other personal data can be redacted in one click. Nothing leaves your browser. Redact & keep editing Send anyway Dismiss"
+ }
+}
